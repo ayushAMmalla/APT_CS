@@ -1,11 +1,15 @@
 package controller;
 
 import java.io.IOException;
+import java.time.LocalDate;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import com.itDokan.model.UserModel;
 
 /**
  * Servlet implementation class RegisterServlet
@@ -37,11 +41,17 @@ public class RegisterServlet extends HttpServlet {
 		// TODO 
 		String firstName = request.getParameter("firstName");
 		String lastName = request.getParameter("lastName");
-		String dob = request.getParameter("dob");
+		String stringDob = request.getParameter("dob");
+		LocalDate dob = LocalDate.parse(stringDob);
+		String gender= request.getParameter("gender");		
 		String email = request.getParameter("email");
 		String phoneNumber = request.getParameter("phoneNumber");
 		String address = request.getParameter("address");
 		String userName = request.getParameter("userName");
+		String password = request.getParameter("password");
+		
+		UserModel newUser = new UserModel(userName, firstName, lastName, gender, address, email, phoneNumber, password, dob);
+		
 		
 		doGet(request, response);
 	}
